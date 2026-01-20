@@ -1,11 +1,15 @@
 extends CharacterBody2D
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var fire_rate: float = 1.0
+const CANNON_BALL = preload("uid://dq8pw52nyvl5h")
 var playerSpeed: float = 100.0
 var last_direction: Vector2 = Vector2.UP
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+var shoot_timer: float = 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	# Movement
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
 	if direction.length() > 0:
@@ -14,6 +18,13 @@ func _process(_delta: float) -> void:
 		update_direction(direction)
 	else:
 		velocity = Vector2.ZERO
+		
+	# Shooting
+	shoot_timer += delta
+	if shoot_timer >= fire_rate:
+		if Input.is_action_just_pressed("shoot"):
+			shoot_cannon()
+			shoot_timer = 0.0
 	
 	move_and_slide()
 
@@ -40,6 +51,13 @@ func update_direction(direction: Vector2):
 	elif angle > -157.5 and angle <= -112.5:
 		sprite.frame = 6
 
+# Shoot cannon
+func shoot_cannon():
+	var cannon_ball = CANNON_BALL.instantiate()
+	cannon_ball.global_position = self.global_position
+	cannon_ball.global_position.y -= 15
+	get_parent().add_child(cannon_ball)
+
 func _on_level_loader_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		get_tree().change_scene_to_file("res://Scenes/world_two.tscn")
+	if body == self:
+		get_tree().call_deferred("change_scene_to_file", "res://Scenes/world_two.tscn")
