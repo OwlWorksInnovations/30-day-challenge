@@ -6,8 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fd25l"]
 radius = 16.0
 
-[node name="CannonBall" type="StaticBody2D"]
-scale = Vector2(0.5, 0.5)
+[node name="CannonBall" type="CharacterBody2D"]
 script = ExtResource("1_ntihi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
