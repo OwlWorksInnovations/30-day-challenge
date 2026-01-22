@@ -16,7 +16,9 @@ const DIRECTION_MAP = {
 }
 
 const REPLACEMENT_MAP = {
-	Vector2i(0, 1): Vector2i(0, 0)
+	Vector2i(0, 3): Vector2i(1, 3),
+	Vector2i(1, 3): Vector2i(2, 3),
+	Vector2i(2, 3): Vector2i(0, 0)
 }
 
 func _ready() -> void:
