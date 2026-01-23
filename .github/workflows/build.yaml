@@ -1,8 +1,9 @@
-name: Build Godot Project
+name: Build and Release Godot Project
 
 on:
   push:
-  pull_request:
+    tags:
+      - "v*.*.*"   # releases only trigger on version tags (recommended)
 
 jobs:
   build:
@@ -20,15 +21,33 @@ jobs:
         uses: chickensoft-games/setup-godot@v2
         with:
           version: 4.2.1
-          use-dotnet: false
           include-templates: true
 
-      - name: Export project
+      - name: Export
         run: |
-          godot --headless --export-release "${{ matrix.preset }}" build/
+          mkdir -p build/${{ matrix.preset }}
+          godot --headless --export-release "${{ matrix.preset }}" build/${{ matrix.preset }}/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: 30-day-challenge-${{ matrix.preset }}
-          path: build/
+          path: build/${{ matrix.preset }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            artifacts/**/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
