@@ -13,11 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        preset:
-          - name: Windows Desktop
-            file: 30-day-challenge.exe
-          - name: Linux/X11
-            file: 30-day-challenge.x86_64
+        preset: ["Windows Desktop", "Linux/X11"]
 
     steps:
       - uses: actions/checkout@v4
@@ -32,34 +28,40 @@ jobs:
 
       - name: Export project
         run: |
-          mkdir -p build/${{ matrix.preset.name }}
-          godot --headless \
-            --export-release "${{ matrix.preset.name }}" \
-            build/${{ matrix.preset.name }}/${{ matrix.preset.file }}
+          mkdir -p build/${{ matrix.preset }}
+          if [ "${{ matrix.preset }}" = "Windows Desktop" ]; then
+            godot --headless --export-release "${{ matrix.preset }}" build/${{ matrix.preset }}/30-day-challenge.exe
+          else
+            godot --headless --export-release "${{ matrix.preset }}" build/${{ matrix.preset }}/30-day-challenge.x86_64
+          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: 30-day-challenge-${{ matrix.preset.name }}
-          path: build/${{ matrix.preset.name }}
+          name: 30-day-challenge-${{ matrix.preset }}
+          path: build/${{ matrix.preset }}
 
   release:
     needs: build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Download artifacts
+      - name: Download Windows artifact
         uses: actions/download-artifact@v4
         with:
-          path: artifacts
+          name: 30-day-challenge-Windows Desktop
+          path: artifacts/windows
+
+      - name: Download Linux artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: 30-day-challenge-Linux/X11
+          path: artifacts/linux
 
       - name: Zip builds
         run: |
           mkdir -p zips
-          for dir in artifacts/*; do
-            name=$(basename "$dir")
-            zip -r "zips/${name}.zip" "$dir"
-          done
+          zip -r zips/30-day-challenge-windows.zip artifacts/windows
+          zip -r zips/30-day-challenge-linux.zip artifacts/linux
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
