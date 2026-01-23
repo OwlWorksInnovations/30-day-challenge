@@ -13,11 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        preset: ["Windows Desktop", "Linux/X11"]
+        preset:
+          - name: Windows Desktop
+            file: 30-day-challenge.exe
+          - name: Linux/X11
+            file: 30-day-challenge.x86_64
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           lfs: true
 
@@ -29,14 +32,16 @@ jobs:
 
       - name: Export project
         run: |
-          mkdir -p build/${{ matrix.preset }}
-          godot --headless --export-release "${{ matrix.preset }}" build/${{ matrix.preset }}/
+          mkdir -p build/${{ matrix.preset.name }}
+          godot --headless \
+            --export-release "${{ matrix.preset.name }}" \
+            build/${{ matrix.preset.name }}/${{ matrix.preset.file }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: 30-day-challenge-${{ matrix.preset }}
-          path: build/${{ matrix.preset }}
+          name: 30-day-challenge-${{ matrix.preset.name }}
+          path: build/${{ matrix.preset.name }}
 
   release:
     needs: build
