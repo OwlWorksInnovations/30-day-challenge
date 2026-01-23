@@ -1,9 +1,12 @@
 name: Build and Release Godot Project
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
-      - "v*.*.*"   # releases only trigger on version tags (recommended)
+      - "v*.*.*"
 
 jobs:
   build:
