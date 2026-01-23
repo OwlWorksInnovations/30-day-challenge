@@ -9,11 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [windows, linux]
+        platform: ["Windows Desktop", "Linux/X11"]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           lfs: true
 
@@ -21,6 +20,8 @@ jobs:
         id: build
         uses: manleydev/build-godot-action@v1.4.1
         with:
+          godot-version: 4.2.1
+          godot-release: stable
           name: 30-day-challenge
           preset: ${{ matrix.platform }}
           debugMode: "false"
