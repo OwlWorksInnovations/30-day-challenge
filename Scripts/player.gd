@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@export var fire_rate: float = 1.0
+@export var fire_rate: float = 0.5
 const CANNON_BALL_PLR = preload("uid://c7e8qtiauda4s")
 const HEALTH = preload("uid://oh335xfxuov7")
 var health_instance: Control

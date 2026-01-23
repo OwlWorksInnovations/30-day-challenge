@@ -2,7 +2,7 @@ extends StaticBody2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cannon_marker: Marker2D = $CannonMarker
-@export var fire_rate: float = 1.0
+@export var fire_rate: float = 2.0
 const CANNON_BALL = preload("uid://dq8pw52nyvl5h")
 var enemySpeed: float = 50.0
 var direction: int = 1
