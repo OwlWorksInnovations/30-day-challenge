@@ -9,25 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: ["Windows Desktop", "Linux/X11"]
+        preset: ["Windows Desktop", "Linux/X11"]
 
     steps:
       - uses: actions/checkout@v4
         with:
           lfs: true
 
-      - name: Build Godot project
-        id: build
-        uses: manleydev/build-godot-action@v1.4.1
+      - name: Setup Godot 4
+        uses: chickensoft-games/setup-godot@v2
         with:
-          godot-version: 4.2.1
-          godot-release: stable
-          name: 30-day-challenge
-          preset: ${{ matrix.platform }}
-          debugMode: "false"
+          version: 4.2.1
+          use-dotnet: false
+          include-templates: true
 
-      - name: Upload build artifact
+      - name: Export project
+        run: |
+          godot --headless --export-release "${{ matrix.preset }}" build/
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: 30-day-challenge-${{ matrix.platform }}
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+          name: 30-day-challenge-${{ matrix.preset }}
+          path: build/
