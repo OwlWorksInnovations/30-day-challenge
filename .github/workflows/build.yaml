@@ -9,11 +9,8 @@ on:
       - "v*.*.*"
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        preset: ["Windows Desktop", "Linux/X11"]
 
     steps:
       - uses: actions/checkout@v4
@@ -26,42 +23,21 @@ jobs:
           version: 4.2.1
           include-templates: true
 
-      - name: Export project
+      - name: Export Windows
         run: |
-          mkdir -p build/${{ matrix.preset }}
-          if [ "${{ matrix.preset }}" = "Windows Desktop" ]; then
-            godot --headless --export-release "${{ matrix.preset }}" build/${{ matrix.preset }}/30-day-challenge.exe
-          else
-            godot --headless --export-release "${{ matrix.preset }}" build/${{ matrix.preset }}/30-day-challenge.x86_64
-          fi
+          mkdir -p build/windows
+          godot --headless --export-release "Windows Desktop" build/windows/30-day-challenge.exe
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: 30-day-challenge-${{ matrix.preset }}
-          path: build/${{ matrix.preset }}
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Windows artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: 30-day-challenge-Windows Desktop
-          path: artifacts/windows
-
-      - name: Download Linux artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: 30-day-challenge-Linux/X11
-          path: artifacts/linux
+      - name: Export Linux
+        run: |
+          mkdir -p build/linux
+          godot --headless --export-release "Linux/X11" build/linux/30-day-challenge.x86_64
 
       - name: Zip builds
         run: |
           mkdir -p zips
-          zip -r zips/30-day-challenge-windows.zip artifacts/windows
-          zip -r zips/30-day-challenge-linux.zip artifacts/linux
+          zip -r zips/30-day-challenge-windows.zip build/windows
+          zip -r zips/30-day-challenge-linux.zip build/linux
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
