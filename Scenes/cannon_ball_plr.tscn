@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7e8qtiauda4s"]
+[gd_scene format=3 uid="uid://c7e8qtiauda4s"]
 
 [ext_resource type="Script" uid="uid://pwgumsiwopv8" path="res://Scripts/cannon_ball_plr.gd" id="1_ntihi"]
 [ext_resource type="Texture2D" uid="uid://dhxing5xfq58a" path="res://Assets/cannon_ball.png" id="2_hdypx"]
@@ -6,12 +6,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fd25l"]
 radius = 16.0
 
-[node name="CannonBall" type="CharacterBody2D"]
+[node name="CannonBall" type="CharacterBody2D" unique_id=175728764]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_ntihi")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=721120061]
 texture = ExtResource("2_hdypx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=337998747]
 shape = SubResource("CircleShape2D_fd25l")
