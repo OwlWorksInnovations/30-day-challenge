@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://dqnxf3hdcf2i4"]
+[gd_scene format=3 uid="uid://dqnxf3hdcf2i4"]
 
 [ext_resource type="Texture2D" uid="uid://cvb7b5bfkyiy4" path="res://Assets/tilemap.png" id="1_8pvdl"]
 
@@ -35,5 +35,4 @@ sources/0 = SubResource("TileSetAtlasSource_wohx3")
 [node name="WorldOne" type="Node2D" unique_id=1218081323]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2117094018]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAIAAAABAAMAAAAAAAIAAAABAAQAAAAAAAIAAAABAAUAAAAAAAIAAAABAAYAAAAAAAIAAAABAAcAAAAAAAIAAAAHAAAAAAAAAAIAAAAHAAEAAAAAAAMAAAAHAAIAAAAAAAIAAAAHAAMAAAAAAAMAAAABAAgAAAAAAAIAAAA=")
 tile_set = SubResource("TileSet_wohx3")
