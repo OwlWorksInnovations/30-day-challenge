@@ -40,6 +40,6 @@ sources/0 = SubResource("TileSetAtlasSource_wohx3")
 tile_set = SubResource("TileSet_wohx3")
 
 [node name="Player" parent="." unique_id=862898731 instance=ExtResource("3_wohx3")]
-position = Vector2(108, 68)
+position = Vector2(112, 69)
 
 [node name="Health" parent="." unique_id=48590306 instance=ExtResource("2_wtvgf")]
