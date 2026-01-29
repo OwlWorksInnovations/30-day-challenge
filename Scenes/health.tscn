@@ -1,30 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://oh335xfxuov7"]
+[gd_scene format=3 uid="uid://oh335xfxuov7"]
 
 [ext_resource type="Texture2D" uid="uid://tfh7ki1m2oex" path="res://Assets/hearts.png" id="1_1nx07"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nx07"]
+atlas = ExtResource("1_1nx07")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_aswr4"]
 atlas = ExtResource("1_1nx07")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s36ud"]
-atlas = ExtResource("1_1nx07")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jb86c"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aswr4")
+"texture": SubResource("AtlasTexture_1nx07")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s36ud")
+"texture": SubResource("AtlasTexture_aswr4")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="Health" type="Control"]
+[node name="Health" type="Control" unique_id=2136315891]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,17 +32,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="1" type="AnimatedSprite2D" parent="."]
-position = Vector2(16, 272)
+[node name="1" type="AnimatedSprite2D" parent="." unique_id=293119579]
+position = Vector2(8, 184)
 sprite_frames = SubResource("SpriteFrames_jb86c")
 frame_progress = 0.25609136
 
-[node name="2" type="AnimatedSprite2D" parent="."]
-position = Vector2(47, 272)
+[node name="2" type="AnimatedSprite2D" parent="." unique_id=116322509]
+position = Vector2(24, 184)
 sprite_frames = SubResource("SpriteFrames_jb86c")
 frame_progress = 0.25609136
 
-[node name="3" type="AnimatedSprite2D" parent="."]
-position = Vector2(78, 272)
+[node name="3" type="AnimatedSprite2D" parent="." unique_id=84800371]
+position = Vector2(40, 184)
 sprite_frames = SubResource("SpriteFrames_jb86c")
 frame_progress = 0.25609136

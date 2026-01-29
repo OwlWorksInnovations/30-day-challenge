@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dqnxf3hdcf2i4"]
 
 [ext_resource type="Texture2D" uid="uid://cvb7b5bfkyiy4" path="res://Assets/tilemap.png" id="1_8pvdl"]
+[ext_resource type="PackedScene" uid="uid://oh335xfxuov7" path="res://Scenes/health.tscn" id="2_wtvgf"]
+[ext_resource type="PackedScene" uid="uid://dwpeojb168tit" path="res://Scenes/player.tscn" id="3_wohx3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wohx3"]
 texture = ExtResource("1_8pvdl")
@@ -36,3 +38,8 @@ sources/0 = SubResource("TileSetAtlasSource_wohx3")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2117094018]
 tile_set = SubResource("TileSet_wohx3")
+
+[node name="Player" parent="." unique_id=862898731 instance=ExtResource("3_wohx3")]
+position = Vector2(108, 68)
+
+[node name="Health" parent="." unique_id=48590306 instance=ExtResource("2_wtvgf")]
