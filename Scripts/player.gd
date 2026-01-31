@@ -65,9 +65,9 @@ func update_direction(direction: Vector2):
 	elif direction.x < 0:
 		sprite.frame = 1 # Left
 	elif direction.y > 0:
-		sprite.frame = 2 # Down
+		sprite.frame = 3 # Down
 	elif direction.y < 0:
-		sprite.frame = 3 # Up
+		sprite.frame = 2 # Up
 
 func shoot_cannon():
 	var cannon_ball_plr = CANNON_BALL_PLR.instantiate()
