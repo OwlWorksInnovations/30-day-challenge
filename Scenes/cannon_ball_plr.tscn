@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://pwgumsiwopv8" path="res://Scripts/cannon_ball_plr.gd" id="1_ntihi"]
 [ext_resource type="Texture2D" uid="uid://dhxing5xfq58a" path="res://Assets/cannon_ball.png" id="2_hdypx"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntihi"]
+radius = 8.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_fd25l"]
-radius = 16.0
+radius = 8.0
 
 [node name="CannonBall" type="CharacterBody2D" unique_id=175728764]
 scale = Vector2(0.5, 0.5)
@@ -13,5 +16,12 @@ script = ExtResource("1_ntihi")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=721120061]
 texture = ExtResource("2_hdypx")
 
+[node name="Area2D" type="Area2D" parent="." unique_id=1204169187]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=217164957]
+shape = SubResource("CircleShape2D_ntihi")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=337998747]
 shape = SubResource("CircleShape2D_fd25l")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

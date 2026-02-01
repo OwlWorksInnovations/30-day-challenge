@@ -1,24 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://75yu6yl5ds8v"]
+[gd_scene format=3 uid="uid://75yu6yl5ds8v"]
 
 [ext_resource type="Script" uid="uid://d08isji7cnes5" path="res://Scripts/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://tw48a8w8u1mn" path="res://Assets/sailship.png" id="1_hghv2"]
+[ext_resource type="Texture2D" uid="uid://demurqmp068hd" path="res://Assets/boat_old.png" id="2_1f0kj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0830c"]
-atlas = ExtResource("1_hghv2")
-region = Rect2(288, 0, 96, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_afpow"]
+atlas = ExtResource("2_1f0kj")
+region = Rect2(0, 0, 64, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8uf12"]
-atlas = ExtResource("1_hghv2")
-region = Rect2(288, 64, 96, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
+atlas = ExtResource("2_1f0kj")
+region = Rect2(64, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_po0sg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0830c")
+"texture": SubResource("AtlasTexture_afpow")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8uf12")
+"texture": SubResource("AtlasTexture_287tu")
 }],
 "loop": true,
 "name": &"default",
@@ -26,18 +26,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
-size = Vector2(54.333332, 21.333334)
+size = Vector2(64, 21.333334)
 
-[node name="Enemy" type="StaticBody2D"]
+[node name="Enemy" type="StaticBody2D" unique_id=2080971994 groups=["enemy"]]
 script = ExtResource("1_1f0kj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2014286206]
 sprite_frames = SubResource("SpriteFrames_po0sg")
-frame_progress = 0.43136585
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.16666636, 5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=743392881]
 shape = SubResource("RectangleShape2D_hghv2")
 
-[node name="CannonMarker" type="Marker2D" parent="."]
+[node name="CannonMarker" type="Marker2D" parent="." unique_id=1234770928]
 position = Vector2(0, 5)

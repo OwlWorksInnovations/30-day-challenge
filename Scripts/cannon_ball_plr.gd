@@ -1,16 +1,16 @@
 extends CharacterBody2D
 
-var cannon_speed := 150.0 
+var cannon_speed := 150.0
 var player_node: Node2D = null
 var is_launched := false
 
 # Updated to match your new player frame logic
 # 0: Right, 1: Left, 2: Up, 3: Down
 const DIRECTION_MAP = {
-	0: Vector2(1, 0),   # Right
-	1: Vector2(-1, 0),  # Left
-	2: Vector2(0, -1),  # Up
-	3: Vector2(0, 1)    # Down
+	0: Vector2(1, 0), # Right
+	1: Vector2(-1, 0), # Left
+	2: Vector2(0, -1), # Up
+	3: Vector2(0, 1) # Down
 }
 
 const REPLACEMENT_MAP = {
@@ -54,6 +54,9 @@ func handle_tile_collision(collision: KinematicCollision2D) -> void:
 		if REPLACEMENT_MAP.has(current_atlas_coords):
 			var new_tile = REPLACEMENT_MAP[current_atlas_coords]
 			collider.set_cell(tile_pos, 0, new_tile)
+	
+	if collider.is_in_group("enemy"):
+		SignalBus.enemy_hit.emit()
 			
 	# Destroy the cannonball on any impact
 	queue_free()

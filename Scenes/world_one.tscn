@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cvb7b5bfkyiy4" path="res://Assets/tilemap.png" id="1_8pvdl"]
 [ext_resource type="PackedScene" uid="uid://oh335xfxuov7" path="res://Scenes/health.tscn" id="2_wtvgf"]
 [ext_resource type="PackedScene" uid="uid://dwpeojb168tit" path="res://Scenes/player.tscn" id="3_wohx3"]
+[ext_resource type="PackedScene" uid="uid://75yu6yl5ds8v" path="res://Scenes/enemy.tscn" id="4_h5lqn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wohx3"]
 texture = ExtResource("1_8pvdl")
@@ -43,3 +44,6 @@ tile_set = SubResource("TileSet_wohx3")
 position = Vector2(110, 80)
 
 [node name="Health" parent="." unique_id=48590306 instance=ExtResource("2_wtvgf")]
+
+[node name="Enemy" parent="." unique_id=2080971994 instance=ExtResource("4_h5lqn")]
+position = Vector2(89, 178)

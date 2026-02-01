@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://uxu717tkkgge"]
+
+[ext_resource type="Texture2D" uid="uid://tfh7ki1m2oex" path="res://Assets/hearts.png" id="1_bo741"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nx07"]
+atlas = ExtResource("1_bo741")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aswr4"]
+atlas = ExtResource("1_bo741")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jb86c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nx07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aswr4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HealthEnemy" type="Control" unique_id=2136315891]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="1" type="AnimatedSprite2D" parent="." unique_id=293119579]
+position = Vector2(-8, 0)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jb86c")
+frame_progress = 0.25609136
+
+[node name="2" type="AnimatedSprite2D" parent="." unique_id=116322509]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jb86c")
+frame_progress = 0.25609136
+
+[node name="3" type="AnimatedSprite2D" parent="." unique_id=84800371]
+position = Vector2(8, 0)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jb86c")
+frame_progress = 0.25609136
