@@ -32,7 +32,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position.x += enemySpeed * direction * delta
-	health_instance.position.x = self.position.x - 5
+	health_instance.position.x = self.position.x
 	health_instance.position.y = self.position.y + -17
 	
 	if position.x >= 224.0:
